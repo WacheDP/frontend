@@ -6,8 +6,8 @@ import nav from '../_nav'
 
 function AppSidebar() {
   const dispatch = useDispatch()
-  const unfoldable = useSelector((state) => state.sidebarUnfoldable)
-  const sidebarShow = useSelector((state) => state.sidebarShow)
+  const unfoldable = useSelector(function (state) { state.sidebarUnfoldable })
+  const sidebarShow = useSelector(function (state) { state.sidebarShow })
 
   /*
   <CSidebarHeader className="border-bottom">

@@ -14,7 +14,7 @@ function AppHeader() {
   const headerRef = useRef()
   const { colorMode, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
   const dispatch = useDispatch()
-  const sidebarShow = useSelector((state) => state.sidebarShow)
+  const sidebarShow = useSelector(function (state) { state.sidebarShow })
 
   function Menu() {
     dispatch({ type: 'set', sidebarShow: !sidebarShow })
@@ -40,12 +40,12 @@ function AppHeader() {
   }
 
   useEffect(function () {
-    document.addEventListener('scroll', () => {
+    document.addEventListener("scroll", function () {
       if (headerRef.current) {
         headerRef.current.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0)
       }
-    }, [])
-  })
+    })
+  }, [])
 
   return (
     <CHeader position='sticky' className='mb-4 p-0' ref={headerRef}>

@@ -4,22 +4,22 @@ import {
   cilBook, cilAddressBook, cilBalanceScale, cilCash, cilContact, cilClipboard,
   cilFlightTakeoff, cilMediaRecord
 } from '@coreui/icons'
-import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
+import { CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
   {
     component: CNavTitle, name: "Tools"
   },
   {
-    component: CNavGroup, name: "Staff", to: "/Staff",
+    component: CNavGroup, name: "Staff", to: "",
     icon: <CIcon icon={cilAddressBook} className='me-2' size='lg' />,
     items: [
       {
-        component: CNavItem, name: "Employees List", to: "/Staff/EmployeeList",
+        component: CNavItem, name: "Employees List", to: "/EmployeeList",
         icon: <CIcon icon={cilMediaRecord} className='me-2' />
       },
       {
-        component: CNavItem, name: "Loans", to: "/Staff/Loans",
+        component: CNavItem, name: "Loans", to: "/Loans",
         icon: <CIcon icon={cilMediaRecord} className='me-2' />
       },
       {
@@ -29,15 +29,15 @@ const _nav = [
     ]
   },
   {
-    component: CNavGroup, name: "Timebook", to: "/Timebook",
+    component: CNavGroup, name: "Timebook", to: "/",
     icon: <CIcon icon={cilBook} className='me-2' size='lg' />,
     items: [
       {
-        component: CNavItem, name: "Register", to: "/Timebook/Register",
+        component: CNavItem, name: "Register", to: "/",
         icon: <CIcon icon={cilMediaRecord} className='me-2' />
       },
       {
-        component: CNavItem, name: "See Timebooks", to: "/Timebook/See",
+        component: CNavItem, name: "See Timebooks", to: "/",
         icon: <CIcon icon={cilMediaRecord} className='me-2' />
       }
     ]
