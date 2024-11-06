@@ -1,69 +1,108 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
 import SimpleBar from 'simplebar-react'
 import 'simplebar-react/dist/simplebar.min.css'
-
 import { CBadge, CNavLink, CSidebarNav } from '@coreui/react'
 
-export const AppSidebarNav = ({ items }) => {
-  const navLink = (name, icon, badge, indent = false) => {
-    return (
-      <>
-        {icon
-          ? icon
-          : indent && (
-              <span className="nav-icon">
-                <span className="nav-icon-bullet"></span>
-              </span>
-            )}
-        {name && name}
-        {badge && (
-          <CBadge color={badge.color} className="ms-auto">
-            {badge.text}
-          </CBadge>
-        )}
-      </>
+function navLink(name, icon, badge) {
+  const elements = []
+
+  if (icon) {
+    elements.push(icon)
+  }
+
+  if (name) {
+    elements.push(name)
+  }
+
+  if (badge) {
+    elements.push(
+      <CBadge color={badge.color} className='ms-auto'>{badge.text}</CBadge>
     )
   }
 
-  const navItem = (item, index, indent = false) => {
-    const { component, name, badge, icon, ...rest } = item
-    const Component = component
-    return (
-      <Component as="div" key={index}>
-        {rest.to || rest.href ? (
-          <CNavLink {...(rest.to && { as: NavLink })} {...rest}>
-            {navLink(name, icon, badge, indent)}
-          </CNavLink>
-        ) : (
-          navLink(name, icon, badge, indent)
-        )}
-      </Component>
+  return <div>{elements}</div>
+}
+
+function navItem(item, index) {
+  const { component, name, badge, icon, ...rest } = item
+  const Component = component
+  const elements = []
+
+  if (rest.to || rest.href) {
+    const navLinkProps = {}
+    if (rest.to) {
+      navLinkProps.as = NavLink
+    }
+    elements.push(
+      <CNavLink {...navLinkProps} {...rest}>{navLink(name, icon, badge)}</CNavLink>
     )
   }
-
-  const navGroup = (item, index) => {
-    const { component, name, icon, items, to, ...rest } = item
-    const Component = component
-    return (
-      <Component compact as="div" key={index} toggler={navLink(name, icon)} {...rest}>
-        {item.items?.map((item, index) =>
-          item.items ? navGroup(item, index) : navItem(item, index, true),
-        )}
-      </Component>
-    )
+  else {
+    elements.push(navLink(name, icon, badge))
   }
 
   return (
-    <CSidebarNav as={SimpleBar}>
-      {items &&
-        items.map((item, index) => (item.items ? navGroup(item, index) : navItem(item, index)))}
-    </CSidebarNav>
+    <Component as="div" key={index}>{elements}</Component>
   )
 }
 
-AppSidebarNav.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.any).isRequired,
+function navGroup(item, index) {
+  const { component, name, icon, items, to, ...rest } = item
+  const Component = component
+
+  function renderSubItems(subItems) {
+    if (subItems) {
+      return (
+        subItems.map(
+          function (subItem, subIndex) {
+            if (subItem.items) {
+              return navGroup(subItem, subIndex)
+            }
+            else {
+              return navItem(subItem, subIndex)
+            }
+          }
+        )
+      )
+    }
+    else {
+      return null
+    }
+  }
+
+  const main = (
+    <Component compact as="div" key={index} toggler={navLink(name, icon)}>
+      {renderSubItems(item.items)}
+    </Component>
+  )
+
+  return main
 }
+
+export function AppSidebarNav(props) {
+  const { items } = props
+
+  function renderItems(items) {
+    if (items) {
+      return items.map(
+        function (item, index) {
+          if (item.items) {
+            return navGroup(item, index)
+          }
+          else {
+            return navItem(item, index)
+          }
+        }
+      )
+    }
+    else {
+      return null
+    }
+  }
+
+  return <CSidebarNav as={SimpleBar}>{renderItems(items)}</CSidebarNav>
+}
+
+AppSidebarNav.propTypes = { items: PropTypes.arrayOf(PropTypes.any).isRequired }
