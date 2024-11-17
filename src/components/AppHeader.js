@@ -6,15 +6,14 @@ import {
   CNavLink, CNavItem, useColorModes
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilBell, cilContrast, cilEnvelopeOpen, cilList, cilMenu, cilMoon, cilSun } from '@coreui/icons'
-import { AppBreadcrumb } from './index'
+import { cilBell, cilEnvelopeOpen, cilList, cilMenu, cilMoon, cilSun } from '@coreui/icons'
 import { AppHeaderDropdown } from './header/index'
 
 function AppHeader() {
   const headerRef = useRef()
   const { colorMode, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
   const dispatch = useDispatch()
-  const sidebarShow = useSelector(function (state) { state.sidebarShow })
+  const sidebarShow = useSelector((state) => state.sidebarShow)
 
   function Menu() {
     dispatch({ type: 'set', sidebarShow: !sidebarShow })
@@ -28,10 +27,6 @@ function AppHeader() {
         icon = <CIcon icon={cilMoon} size="lg" />;
         break;
 
-      case 'auto':
-        icon = <CIcon icon={cilContrast} size="lg" />;
-        break;
-
       case 'light':
         icon = <CIcon icon={cilSun} size="lg" />;
     }
@@ -39,8 +34,8 @@ function AppHeader() {
     return icon
   }
 
-  useEffect(function () {
-    document.addEventListener("scroll", function () {
+  useEffect(() => {
+    document.addEventListener("scroll", () => {
       if (headerRef.current) {
         headerRef.current.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0)
       }
@@ -72,13 +67,13 @@ function AppHeader() {
             <CDropdownToggle caret={true}>{SetIcon}</CDropdownToggle>
 
             <CDropdownMenu>
-              <CDropdownItem active={colorMode === 'light'} className="d-flex align-items-center" as="button" type="button"
-                onClick={function () { setColorMode('light') }}>
+              <CDropdownItem active={colorMode === 'light'} className="d-flex align-items-center" as="button"
+                type="button" onClick={() => setColorMode('light')}>
                 <CIcon className="me-2" icon={cilSun} size="lg" /> Light
               </CDropdownItem>
 
-              <CDropdownItem active={colorMode === 'dark'} className="d-flex align-items-center" as="button" type="button"
-                onClick={function () { setColorMode('dark') }}>
+              <CDropdownItem active={colorMode === 'dark'} className="d-flex align-items-center" as="button"
+                type="button" onClick={() => setColorMode('dark')}>
                 <CIcon className="me-2" icon={cilMoon} size="lg" /> Dark
               </CDropdownItem>
             </CDropdownMenu>
@@ -88,10 +83,6 @@ function AppHeader() {
 
           <AppHeaderDropdown />
         </CHeaderNav>
-      </CContainer>
-
-      <CContainer className='px-4' fluid>
-        <AppBreadcrumb />
       </CContainer>
     </CHeader>
   )

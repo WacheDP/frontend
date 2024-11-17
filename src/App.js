@@ -20,7 +20,7 @@ function Waiting() {
 
 export function Application() {
   const { isColorModeSet, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
-  const storedTheme = useSelector((state) => state.theme)
+  const storedTheme = useSelector((state) => { state.theme })
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.href.split('?')[1])
@@ -40,11 +40,11 @@ export function Application() {
     <HashRouter>
       <Suspense fallback={<Waiting />}>
         <Routes>
-          <Route exact path="/login" name="Login Page" element={<Login />} />
-          <Route exact path="/register" name="Register Page" element={<Register />} />
-          <Route exact path="/404" name="Page 404" element={<Page404 />} />
-          <Route exact path="/500" name="Page 500" element={<Page500 />} />
-          <Route path="*" name="Home" element={<DefaultLayout />} />
+          <Route path="/" name="Dashboard" element={<DefaultLayout />} />
+          <Route path="/login" name="Login Page" element={<Login />} />
+          <Route path="/register" name="Register Page" element={<Register />} />
+          <Route path="/500" name="Page 500" element={<Page500 />} />
+          <Route path="*" name="Page 404" element={<Page404 />} />
         </Routes>
       </Suspense>
     </HashRouter>

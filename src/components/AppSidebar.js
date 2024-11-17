@@ -6,8 +6,8 @@ import nav from '../_nav'
 
 function AppSidebar() {
   const dispatch = useDispatch()
-  const unfoldable = useSelector(function (state) { state.sidebarUnfoldable })
-  const sidebarShow = useSelector(function (state) { state.sidebarShow })
+  const unfoldable = useSelector((state) => state.sidebarUnfoldable)
+  const sidebarShow = useSelector((state) => state.sidebarShow)
 
   /*
   <CSidebarHeader className="border-bottom">
@@ -28,14 +28,14 @@ function AppSidebar() {
       position="fixed"
       unfoldable={unfoldable}
       visible={sidebarShow}
-      onVisibleChange={function (visible) { dispatch({ type: 'set', sidebarShow: visible }) }}>
+      onVisibleChange={(visible) => dispatch({ type: 'set', sidebarShow: visible })}>
 
       <CSidebarHeader className="border-bottom"></CSidebarHeader>
 
       <AppSidebarNav items={nav} />
 
       <CSidebarFooter className="border-top d-none d-lg-flex">
-        <CSidebarToggler onClick={function () { dispatch({ type: 'set', sidebarUnfoldable: !unfoldable }) }} />
+        <CSidebarToggler onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })} />
       </CSidebarFooter>
 
     </CSidebar>

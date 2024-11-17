@@ -5,10 +5,7 @@ import 'core-js'
 import { Application } from './App'
 import store from './store'
 
-const root = document.getElementById('root')
-const create = createRoot(root)
-
-create.render(
+createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <Application />
   </Provider>
