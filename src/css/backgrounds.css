@@ -1,0 +1,11 @@
+.background-tech {
+    background-image: url('../assets/images/backgrounds/v1016-b-09.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.text-black,
+.text-black::placeholder {
+    color: black;
+}

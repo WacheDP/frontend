@@ -1,6 +1,18 @@
+import { element, exact } from 'prop-types'
 import React from 'react'
 
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard.js'))
+const Allbooks = React.lazy(() => import('./views/timebook/allbooks.js'))
+
+const routes = [
+  { path: '/', exact: true, name: 'Home' },
+  { path: '/', exact: true, name: 'Dashboard', element: Dashboard },
+  { path: '/timebooks/see', name: 'Allbooks', element: Allbooks },
+]
+
+export default routes
+
+/*
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -98,5 +110,4 @@ const routes = [
   { path: '/notifications/toasts', name: 'Toasts', element: Toasts },
   { path: '/widgets', name: 'Widgets', element: Widgets },
 ]
-
-export default routes
+*/

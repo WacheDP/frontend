@@ -24,11 +24,12 @@ function AppHeader() {
 
     switch (colorMode) {
       case 'dark':
-        icon = <CIcon icon={cilMoon} size="lg" />;
-        break;
+        icon = <CIcon icon={cilMoon} size="lg" />
+        break
 
       case 'light':
-        icon = <CIcon icon={cilSun} size="lg" />;
+        icon = <CIcon icon={cilSun} size="lg" />
+        break
     }
 
     return icon
@@ -50,9 +51,9 @@ function AppHeader() {
         </CHeaderToggler>
 
         <CHeaderNav className="d-none d-md-flex">
-          <CNavItem><CNavLink to="/dashboard" as={NavLink}>Dashboard</CNavLink></CNavItem>
+          <CNavItem><CNavLink to="/" as={NavLink}>Dashboard</CNavLink></CNavItem>
           <CNavItem><CNavLink href="#">Users</CNavLink></CNavItem>
-          <CNavItem><CNavLink href="#">Settings</CNavLink></CNavItem>
+          <CNavItem><CNavLink href='#'>Role</CNavLink></CNavItem>
         </CHeaderNav>
 
         <CHeaderNav className="ms-auto">

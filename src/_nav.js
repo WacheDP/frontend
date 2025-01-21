@@ -26,15 +26,15 @@ const _nav = [
     ]
   },
   {
-    component: CNavGroup, name: "Timebook", to: "/Timebook",
+    component: CNavGroup, name: "Timebook", to: "/timebooks",
     icon: <CIcon icon={cilBook} className='me-2' size='lg' />,
     items: [
       {
-        component: CNavItem, name: "Register", to: "/Timebook/Register",
+        component: CNavItem, name: "Register", to: "/timebooks/register",
         icon: <CIcon icon={cilMediaRecord} className='me-2' />
       },
       {
-        component: CNavItem, name: "See Timebooks", to: "/Timebook/See",
+        component: CNavItem, name: "See Timebooks", to: "/timebooks/see",
         icon: <CIcon icon={cilMediaRecord} className='me-2' />
       }
     ]
